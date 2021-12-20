@@ -38,6 +38,11 @@ function onDataReceived(text) {
   if (text === 'quit\n'|| text ==='exit\n') {
     quit();
   }
+
+   else if(text ==='help\n') {
+     help();
+     
+   }
   else if(text === 'hello\n'){
     hello();
   }
@@ -78,6 +83,10 @@ function hello(){
 function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
+}
+
+function help(){
+ console.log('lists all the possible commands')
 }
 
 // The following line starts the application
