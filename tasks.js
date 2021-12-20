@@ -84,7 +84,11 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-
+/**
+ * lists all the possible commands'
+ *
+ * @returns {void}
+ */
 function help(){
  console.log('lists all the possible commands')
 }
