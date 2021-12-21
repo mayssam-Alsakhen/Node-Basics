@@ -43,12 +43,26 @@ function onDataReceived(text) {
      help();
      
    }
+
+else if((text.slice(0,5))==='hello'){
+  hello(text.slice(5));
+}
+
+
   else if(text === 'hello\n'){
     hello();
   }
   else{
     unknownCommand(text);
   }
+}
+
+
+
+function hello(x){
+  let arg = x.trim();
+  console.log('hello ' + arg.replace("\n","") + "!");
+  
 }
 
 
@@ -64,14 +78,7 @@ function unknownCommand(c){
 }
 
 
-/**
- * Says hello
- *
- * @returns {void}
- */
-function hello(){
-  console.log('hello!')
-}
+
 
 
 
