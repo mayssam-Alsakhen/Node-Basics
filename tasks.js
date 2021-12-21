@@ -17,7 +17,12 @@ function startApp(name){
   console.log("--------------------")
 }
 
-
+let coding = [
+  'javascript',
+  'php',
+  'css',
+  'HTML'
+]
 
 /**
  * Decides what to do depending on the data that was received
@@ -48,6 +53,10 @@ else if((text.slice(0,5))==='hello'){
   hello(text.slice(5));
 }
 
+else if (text === 'list\n'){
+  list();
+}
+
 
   else if(text === 'hello\n'){
     hello();
@@ -57,7 +66,11 @@ else if((text.slice(0,5))==='hello'){
   }
 }
 
-
+/**
+ *say hello 
+ *
+ * @returns {void}
+ */
 
 function hello(x){
   let arg = x;
@@ -79,9 +92,22 @@ function unknownCommand(c){
 
 
 /**
- * Says hello
+ * list
  *
+ * @returns {void}
+ */
  
+function  list (){
+
+for (var i = 0 ; i<coding.length; i++ ){
+
+  console.log((i+1) + "." + coding[i]);
+
+
+}
+
+
+}
 
 
 
