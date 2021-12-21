@@ -60,8 +60,8 @@ else if((text.slice(0,5))==='hello'){
 
 
 function hello(x){
-  let arg = x.trim();
-  console.log('hello ' + arg.replace("\n","") + "!");
+  let arg = x;
+  console.log('hello' + arg.replace ("\n","") + "!")
   
 }
 
@@ -78,7 +78,10 @@ function unknownCommand(c){
 }
 
 
-
+/**
+ * Says hello
+ *
+ 
 
 
 
