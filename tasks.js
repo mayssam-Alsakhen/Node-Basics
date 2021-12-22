@@ -119,8 +119,12 @@ function add (y){
        console.log("you removed a task check the list pleas.");
        
      }
+     else if (a > coding.length){
+      console.log("your task number does not exist in the list")
+     }
    }
   }
+  
   else{
     coding.pop();
     console.log("you removed the last task");
