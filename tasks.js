@@ -51,6 +51,10 @@ function onDataReceived(text) {
    else if ((text.slice(0, 3)) ==='add'){
       add(text);
    }
+   
+   else if(text.trim().split(" ")[0] === 'remove'){
+    remove(text);
+  }
 
 else if((text.slice(0,5))==='hello'){
   hello(text.slice(5));
@@ -81,6 +85,11 @@ function hello(x){
   
 }
 
+/**
+ *add a task
+ *
+ * @returns {void}
+ */
 function add (y){
 
     if (y.slice(3).trim() == ""){
@@ -94,6 +103,33 @@ function add (y){
       }
     }
   }
+
+/**
+ *remove a task
+ *
+ * @returns {void}
+ */
+
+ function remove(z){
+  if(z.trim().split(" ")[1]){
+   var a = z.trim().split(" ")[1];
+   for(let i=0 ; i<coding.length ;i++){
+     if(i == a-1){
+       coding.splice(i,1);
+       console.log("you removed a task check the list pleas.");
+       
+     }
+   }
+  }
+  else{
+    coding.pop();
+    console.log("you removed the last task");
+  }
+
+}
+  
+
+
 
 /**
  * prints "unknown command"
