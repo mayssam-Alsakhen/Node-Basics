@@ -48,6 +48,9 @@ function onDataReceived(text) {
      help();
      
    }
+   else if ((text.slice(0, 3)) ==='add'){
+      add(text);
+   }
 
 else if((text.slice(0,5))==='hello'){
   hello(text.slice(5));
@@ -78,6 +81,19 @@ function hello(x){
   
 }
 
+function add (y){
+
+    if (y.slice(3).trim() == ""){
+      console.log("error : pleas add a task")
+    }
+    else{
+      coding.push(y.slice(3).trim())
+      for (var i = 0 ; i<coding.length; i++ ){
+        
+        console.log((i+1) + "-" + coding[i]);
+      }
+    }
+  }
 
 /**
  * prints "unknown command"
@@ -101,7 +117,7 @@ function  list (){
 
 for (var i = 0 ; i<coding.length; i++ ){
 
-  console.log((i+1) + "." + coding[i]);
+  console.log((i+1) + "-" + coding[i]);
 
 
 }
