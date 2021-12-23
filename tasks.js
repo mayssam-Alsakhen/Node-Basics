@@ -292,7 +292,7 @@ function quit() {
  * @returns {void}
  */
 function help() {
-  console.log("'hello x'say hello x!\n'quit' or 'exit' to quit \n'help'  lists all the possible commands\n 'list' will show you your list\n 'add x'will add 'x' to your list\n 'add' will give an error \n 'remove' will remove the last task from your list \n 'remove n' will remove th ;n; task in your list")
+  console.log("'hello x'say hello x!\n'quit' or 'exit' to quit \n'help'  lists all the possible commands\n 'list' will show you your list\n 'add x'will add 'x' to your list\n 'add' will give an error \n 'remove' will remove the last task from your list \n 'remove n' will remove th ;n; task in your list\n'check'to check your task\n 'uncheck' to uncheck your task")
 }
 
 // The following line starts the application
