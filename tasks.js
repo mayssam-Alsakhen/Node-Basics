@@ -9,7 +9,7 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
@@ -17,13 +17,13 @@ function startApp(name){
   console.log("--------------------")
 }
 
-let coding = [
+const list = [
   'javascript',
   'php',
   'css',
   'HTML'
 ]
-
+;
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -40,35 +40,39 @@ let coding = [
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit\n'|| text ==='exit\n') {
+
+  if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
 
-   else if(text ==='help\n') {
-     help();
-     
-   }
-   else if ((text.slice(0, 3)) ==='add'){
-      add(text);
-   }
-   
-   else if(text.trim().split(" ")[0] === 'remove'){
+  else if (text === 'help\n') {
+    help();
+
+  }
+  else if ((text.slice(0, 3)) === 'add') {
+    add(text);
+  }
+  else if ((text.slice(0, 4)) === 'edit') {
+    edit(text);
+  }
+
+  else if (text.trim().split(" ")[0] === 'remove') {
     remove(text);
   }
 
-else if((text.slice(0,5))==='hello'){
-  hello(text.slice(5));
-}
+  else if ((text.slice(0, 5)) === 'hello') {
+    hello(text.slice(5));
+  }
 
-else if (text === 'list\n'){
-  list();
-}
+  else if (text === 'list\n') {
+    listItems();
+  }
 
 
-  else if(text === 'hello\n'){
+  else if (text === 'hello\n') {
     hello();
   }
-  else{
+  else {
     unknownCommand(text);
   }
 }
@@ -79,10 +83,10 @@ else if (text === 'list\n'){
  * @returns {void}
  */
 
-function hello(x){
+function hello(x) {
   let arg = x;
-  console.log('hello' + arg.replace ("\n","") + "!")
-  
+  console.log('hello' + arg.replace("\n", "") + "!")
+
 }
 
 /**
@@ -90,19 +94,69 @@ function hello(x){
  *
  * @returns {void}
  */
-function add (y){
+function add(y) {
 
-    if (y.slice(3).trim() == ""){
-      console.log("error : pleas add a task")
-    }
-    else{
-      coding.push(y.slice(3).trim())
-      for (var i = 0 ; i<coding.length; i++ ){
-        
-        console.log((i+1) + "-" + coding[i]);
-      }
+  if (y.slice(3).trim() == "") {
+    console.log("error : please add a task")
+  }
+  else {
+    list.push(y.slice(3).trim())
+    for (var i = 0; i < list.length; i++) {
+
+      console.log((i + 1) + "-" + list[i]);
     }
   }
+}
+
+
+/**
+ *edit
+ *
+ * @returns {void}
+ */
+
+
+// function edit(m) {
+//   let n = m.trim().split(" ")[1];
+//   let r = m.trim().split(" ")[2];
+//   if (m.slice(4).trim() == "") {
+//     console.log("error : please edit a task");
+//   }
+
+//   else if (isNaN(parseInt(n))) {
+
+//     list.pop();
+//     list.push(n);
+//     console.log("you edit the last task in your list, check it please.")
+//   }
+//     else if(!isNaN(parseInt(n))){
+//     // coding[m.split(" ")[1] - 1] = m.split(' ').slice(2).join(' ');
+//     const input= m.split(' ');
+//     const [edit, index, ...newText] = input;
+//     console.log(newText);
+//    }
+// }
+
+function edit(arg){
+  input = arg.trim().split(" ");
+
+  if(input.length === 1) {console.log("error : please edit a task")}
+ else if (input.length >= 2 && isNaN(parseInt(input[1]))) {
+   console.log("you edit the last task in your list")
+  const [command, ...newitem] = input;
+  list[list.length -1] =newitem.join(" ")
+}
+
+  else if (input.length > 2 && !isNaN(parseInt(input[1]))){
+    const [command, index, ...newitem] = input;
+    console.log(`'${list[index-1]}' was modified `)
+    list[index-1] = newitem.join(" ")
+   
+  } 
+}
+
+
+
 
 /**
  *remove a task
@@ -110,28 +164,28 @@ function add (y){
  * @returns {void}
  */
 
- function remove(z){
-  if(z.trim().split(" ")[1]){
-   var a = z.trim().split(" ")[1];
-   for(let i=0 ; i<coding.length ;i++){
-     if(i == a-1){
-       coding.splice(i,1);
-       console.log("you removed a task check the list pleas.");
-       
-     }
-     else if (a > coding.length){
-      console.log("your task number does not exist in the list")
-     }
-   }
+function remove(z) {
+  if (z.trim().split(" ")[1]) {
+    var a = z.trim().split(" ")[1];
+    for (let i = 0; i < list.length; i++) {
+      if (i == a - 1) {
+        list.splice(i, 1);
+        console.log("you removed a task check the list pleas.");
+
+      }
+      else if (a > list.length) {
+        console.log("your task number does not exist in the list")
+      }
+    }
   }
-  
-  else{
-    coding.pop();
+
+  else {
+    list.pop();
     console.log("you removed the last task");
   }
 
 }
-  
+
 
 
 
@@ -142,8 +196,8 @@ function add (y){
  * @param  {string} c the text received
  * @returns {void}
  */
-function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+function unknownCommand(c) {
+  console.log('unknown command: "' + c.trim() + '"')
 }
 
 
@@ -152,15 +206,15 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
- 
-function  list (){
 
-for (var i = 0 ; i<coding.length; i++ ){
+function listItems() {
 
-  console.log((i+1) + "-" + coding[i]);
+  for (var i = 0; i < list.length; i++) {
+
+    console.log((i + 1) + "-" + list[i]);
 
 
-}
+  }
 
 
 }
@@ -172,7 +226,7 @@ for (var i = 0 ; i<coding.length; i++ ){
  *
  * @returns {void}
  */
-function quit(){
+function quit() {
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -181,8 +235,8 @@ function quit(){
  *
  * @returns {void}
  */
-function help(){
- console.log("'hello x'say hello x!\n'quit' or 'exit' to quit \n'help'  lists all the possible commands\n 'list' will show you your list\n 'add x'will add 'x' to your list\n 'add' will give an error \n 'remove' will remove the last task from your list \n 'remove n' will remove th ;n; task in your list")
+function help() {
+  console.log("'hello x'say hello x!\n'quit' or 'exit' to quit \n'help'  lists all the possible commands\n 'list' will show you your list\n 'add x'will add 'x' to your list\n 'add' will give an error \n 'remove' will remove the last task from your list \n 'remove n' will remove th ;n; task in your list")
 }
 
 // The following line starts the application
