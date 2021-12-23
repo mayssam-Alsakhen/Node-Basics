@@ -69,6 +69,12 @@ function onDataReceived(text) {
   else if (text.trim().split(" ")[0] === 'remove') {
     remove(text);
   }
+  else if (text.trim().split(" ")[0] === 'check'){
+    check(text.trim());
+  }
+  else if (text.trim().split(" ")[0] === 'uncheck'){
+    uncheck(text.trim());
+  }
 
   else if ((text.slice(0, 5)) === 'hello') {
     hello(text.slice(5));
@@ -77,7 +83,6 @@ function onDataReceived(text) {
   else if (text === 'list\n') {
     listItems();
   }
-
 
   else if (text === 'hello\n') {
     hello();
@@ -219,18 +224,57 @@ function unknownCommand(c) {
 
 function listItems() {
 
-  for (var i = 0; i < list.length; i++) {
+  for (let i = 0; i < list.length; i++) {
 if(list[i].done){
     console.log("[✓]"+(i + 1) + "-" + list[i].taskName);
 
 }
 else{
 console.log("[ ]"+(i + 1) + "-" + list[i].taskName);
-  }}
+  }}}
 
+/**
+ * check a task from the list
+ * @returns {void}
+ */
+
+
+ function check(v){
+   if(v.trim().slice(5) === ""){
+     console.log("no task checked")
+   }
+   else if (!isNaN (parseInt(v.trim().slice(5)[1]))){
+    const [command, index] = (v.trim().slice(5));
+    console.log("you checked a task.");
+   list[index - 1].done=true;
+
+    
+   }
+
+ }
+
+
+
+/**
+ * uncheck a task from the list
+ * @returns {void}
+ */
+
+
+ function uncheck(u){
+  if(u.trim().slice(7) === ""){
+    console.log("no task checked")
+  }
+  else if (!isNaN (parseInt(u.trim().slice(7)[1]))){
+   const [command, index] = (u.trim().slice(7));
+   console.log("you unchecked a task.");
+  list[index - 1].done=false;
+
+   
+  }
 
 }
-
+ 
 
 
 /**
