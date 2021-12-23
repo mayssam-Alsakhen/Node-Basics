@@ -17,13 +17,23 @@ function startApp(name) {
   console.log("--------------------")
 }
 
-const list = [
-  'javascript',
-  'php',
-  'css',
-  'HTML'
-]
-;
+const list = [{
+  taskName: 'javascript',
+  done:true
+},
+{
+  taskName: 'php',
+  done:true
+},
+{
+  taskName: 'css',
+  done:false
+},
+{
+  taskName: 'HTML',
+  done:false
+},
+];
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -100,10 +110,10 @@ function add(y) {
     console.log("error : please add a task")
   }
   else {
-    list.push(y.slice(3).trim())
+    list.push( {taskName : y.slice(3).trim()})
     for (var i = 0; i < list.length; i++) {
 
-      console.log((i + 1) + "-" + list[i]);
+      console.log((i + 1) + "-" + list[i].taskName);
     }
   }
 }
@@ -144,13 +154,13 @@ function edit(arg){
  else if (input.length >= 2 && isNaN(parseInt(input[1]))) {
    console.log("you edit the last task in your list")
   const [command, ...newitem] = input;
-  list[list.length -1] =newitem.join(" ")
+  list[list.length -1].taskName =newitem.join(" ")
 }
 
   else if (input.length > 2 && !isNaN(parseInt(input[1]))){
     const [command, index, ...newitem] = input;
-    console.log(`'${list[index-1]}' was modified `)
-    list[index-1] = newitem.join(" ")
+    console.log(`'${list[index-1].taskName}' was modified `)
+    list[index-1].taskName = newitem.join(" ")
    
   } 
 }
@@ -210,11 +220,13 @@ function unknownCommand(c) {
 function listItems() {
 
   for (var i = 0; i < list.length; i++) {
+if(list[i].done){
+    console.log("[✓]"+(i + 1) + "-" + list[i].taskName);
 
-    console.log((i + 1) + "-" + list[i]);
-
-
-  }
+}
+else{
+console.log("[ ]"+(i + 1) + "-" + list[i].taskName);
+  }}
 
 
 }
