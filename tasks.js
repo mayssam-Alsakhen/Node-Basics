@@ -33,7 +33,8 @@ if(process.argv.length == 2 ) {
     } else {
       path = process.argv[2]
     }
-   read(path)
+
+   read(path);
   }
 
 
@@ -43,7 +44,7 @@ if(process.argv.length == 2 ) {
 function read(path){
 
 try{
-  list = json.parse(data.toString());
+  list = JSON.parse(fs.readFileSync("database.json").toString());
 }
 
 catch(error){
