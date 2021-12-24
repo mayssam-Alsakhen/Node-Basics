@@ -1,6 +1,9 @@
+
+const process = require('process');
 var fs = require('fs');
 var data = fs.readFileSync('database.json');
 var words = json.parse(data);
+
 
 
 
@@ -22,8 +25,22 @@ var words = json.parse(data);
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
-}
 
+
+
+if(process.argv.length == 2 ) {
+  path ="database.json"
+    } else {
+      path = process.argv[2]
+    }
+   read(path)
+  }
+
+
+
+  
+
+function read(path){
 
 try{
   list = json.parse(data.toString());
@@ -32,7 +49,7 @@ try{
 catch(error){
   console.log("you have an")
 }
-
+}
 
 
 let  list = [{
@@ -140,6 +157,11 @@ function add(y) {
     }
   }
 }
+
+// if (process.argv[2]) {
+//   database.json == process.argv[2]
+// }
+
 
 
 /**
@@ -303,17 +325,25 @@ console.log("[ ]"+(i + 1) + "-" + list[i].taskName);
 function quit() {
   console.log('Quitting now, goodbye!')
 
-try{
-  fs.writeFileSync((database.json),json.stringify(list,null,4))
+  if(process.argv.length == 2 ) {
+    bath ="database.json"
+      } else {
+        bath = process.argv[2]
+      }
+
+  save(path);
 
 }
 
-catch(error){
-console.log("you have an error!")
 
-}
+function save(path){
+  try {
+    fs.writeFileSync(path,JSON.stringify(list,null,3))
 
-  process.exit();
+      } catch(error){
+    console.log('error')
+      }
+      process.exit();
 }
 /**
  * lists all the possible commands'
