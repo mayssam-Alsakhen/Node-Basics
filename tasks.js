@@ -1,3 +1,10 @@
+var fs = require('fs');
+var data = fs.readFileSync('database.json');
+var words = json.parse(data);
+
+
+
+
 
 /**
  * Starts the application
@@ -8,8 +15,8 @@
  *  
  * @param  {string} name the name of the app
  * @returns {void}
- */
-function startApp(name) {
+*/
+ function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
@@ -17,7 +24,18 @@ function startApp(name) {
   console.log("--------------------")
 }
 
-const list = [{
+
+try{
+  list = json.parse(data.toString());
+}
+
+catch(error){
+  console.log("you have an")
+}
+
+
+
+let  list = [{
   taskName: 'javascript',
   done:true
 },
@@ -284,6 +302,17 @@ console.log("[ ]"+(i + 1) + "-" + list[i].taskName);
  */
 function quit() {
   console.log('Quitting now, goodbye!')
+
+try{
+  fs.writeFileSync((database.json),json.stringify(list,null,4))
+
+}
+
+catch(error){
+console.log("you have an error!")
+
+}
+
   process.exit();
 }
 /**
